@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,16 +18,50 @@
 </head>
 
 <!-- body -->
-<body>
-    
+
+<body id="background-img">
+
     <!-- header -->
     <header>
-
+        <nav id="navbar_top" class="navbar navbar-dark bg-dark">
+            <div class="container-fluid mx-5">
+                <p class="navbar-brand fs-3">Find Your Country</p>
+                <button class="btn btn-outline-info fw-bold" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Search</button>
+                <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+                    aria-labelledby="offcanvasWithBothOptionsLabel">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Choose Your Search Method</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <input class="w-100" type="search" name="" id="" placeholder="Write here...">
+                        <div class="mt-3">
+                            <button type="button" class="btn btn-outline-secondary">Name</button>
+                            <button type="button" class="btn btn-outline-secondary">Language</button>
+                            <button type="button" class="btn btn-outline-secondary">Capital</button>
+                            <button type="button" class="btn btn-outline-secondary">Region</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
     </header>
-    
+
     <!-- main -->
     <main>
+        <section class="container">
+            <div id="countries" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
 
+            </div>
+        </section>
+        <section class="country-details">
+            <div class="modal fade" id="countryDetailsModal" tabindex="-1" aria-labelledby="countryDetailsModalLabel" aria-hidden="true">
+                <div id="modal-container" class="modal-dialog modal-lg">
+
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- footer -->
@@ -36,5 +71,7 @@
 
     <!-- js style -->
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
 </body>
+
 </html>
