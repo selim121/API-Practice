@@ -1,31 +1,34 @@
 const body = document.body;
-window.addEventListener('scroll', function(){
-	const value = window.scrollY;
-	body.style.backgroundPositionY = value * 0.5 + 'px';
+window.addEventListener('scroll', function () {
+    const value = window.scrollY;
+    body.style.backgroundPositionY = value * 0.5 + 'px';
 });
 
 
-document.addEventListener("DOMContentLoaded", function(){
-    window.addEventListener('scroll', function() {
+document.addEventListener("DOMContentLoaded", function () {
+    window.addEventListener('scroll', function () {
         if (window.scrollY > 50) {
-          document.getElementById('navbar_top').classList.add('fixed-top');
-          navbar_height = document.querySelector('.navbar').offsetHeight;
-          document.body.style.paddingTop = navbar_height + 'px';
+            document.getElementById('navbar_top').classList.add('fixed-top');
+            navbar_height = document.querySelector('.navbar').offsetHeight;
+            document.body.style.paddingTop = navbar_height + 'px';
         } else {
-          document.getElementById('navbar_top').classList.remove('fixed-top');
-          document.body.style.paddingTop = '0';
-        } 
+            document.getElementById('navbar_top').classList.remove('fixed-top');
+            document.body.style.paddingTop = '0';
+        }
     });
-  }); 
+});
 
 const countries = () => {
-    fetch('https://restcountries.com/v3.1/all')
-    .then(res => res.json())
-    .then(data => displayCountry(data))   
+    const URL = `https://restcountries.com/v3.1/all`;
+    fetch(URL)
+        .then(res => res.json())
+        .then(data => displayCountry(data))
+
 }
 
 const displayCountry = countries => {
     const countriesContainer = document.getElementById('countries');
+    countriesContainer.innerText = '';
     countries.forEach(country => {
         // console.log(country.cca2);
         const countryDiv = document.createElement('div');
@@ -48,10 +51,12 @@ const displayCountry = countries => {
 const loadDetails = code => {
     const URL = `https://restcountries.com/v3.1/alpha/${code}`;
     fetch(URL)
-    .then(res => res.json())
-    .then(data => displayCountryDetails(data));
+        .then(res => res.json())
+        .then(data => displayCountryDetails(data));
 }
 
+
+//Display
 const displayCountryDetails = country => {
     // console.log(country[0]);
     const modalContainer = document.getElementById('modal-container');
@@ -80,5 +85,31 @@ const displayCountryDetails = country => {
     modalContainer.appendChild(modalDiv);
 }
 
+const getCountryName = (element,searchText) => {
+    const URL = `https://restcountries.com/v3.1/${element}/${searchText}`;
+    fetch(URL).then(res => res.json())
+        .then(data => displayCountry(data));
+}
 
-countries();
+const getSearchFieldValue = () =>{
+    const searchText = document.getElementById('search-field');
+    const getSearchText = searchText.value;
+    searchText.value = '';
+    return getSearchText;
+}
+
+const searchByName = () => {
+    getCountryName('name', getSearchFieldValue());
+}
+const searchByCapital = () => {
+    getCountryName('capital', getSearchFieldValue());
+}
+const searchByRegion = () => {
+    getCountryName('region', getSearchFieldValue());
+}
+const searchByLanguage = () => {
+    getCountryName('lang', getSearchFieldValue());
+}
+
+countries(); 
+
