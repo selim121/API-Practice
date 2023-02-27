@@ -58,6 +58,7 @@ const displayCountryDetails = country => {
     modalContainer.innerText = '';
     const modalDiv = document.createElement('div');
     modalDiv.classList.add('modal-content');
+    modalDiv.classList.add('bg-info-subtle');
     modalDiv.innerHTML = `
     <div class="border text-center py-3">
         <h1 id="modal-title" class="modal-title fs-2" id="countryDetailsModalLabel">${country[0].name.common} <img src="${country[0].flags.png}" style="height: 25px; width: 35px;"></h1>
